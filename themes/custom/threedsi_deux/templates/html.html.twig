@@ -1,0 +1,130 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display the basic html structure of a single
+ * Drupal page.
+ *
+ * Variables:
+ * - $css: An array of CSS files for the current page.
+ * - $language: (object) The language the site is being displayed in.
+ *   $language->language contains its textual representation.
+ *   $language->dir contains the language direction. It will either be 'ltr' or
+ *   'rtl'.
+ * - $rdf_namespaces: All the RDF namespace prefixes used in the HTML document.
+ * - $grddl_profile: A GRDDL profile allowing agents to extract the RDF data.
+ * - $head_title: A modified version of the page title, for use in the TITLE
+ *   tag.
+ * - $head_title_array: (array) An associative array containing the string parts
+ *   that were used to generate the $head_title variable, already prepared to be
+ *   output as TITLE tag. The key/value pairs may contain one or more of the
+ *   following, depending on conditions:
+ *   - title: The title of the current page, if any.
+ *   - name: The name of the site.
+ *   - slogan: The slogan of the site, if any, and if there is no title.
+ * - $head: Markup for the HEAD section (including meta tags, keyword tags, and
+ *   so on).
+ * - $styles: Style tags necessary to import all CSS files for the page.
+ * - $scripts: Script tags necessary to load the JavaScript files and settings
+ *   for the page.
+ * - $page_top: Initial markup from any modules that have altered the
+ *   page. This variable should always be output first, before all other dynamic
+ *   content.
+ * - $page: The rendered page content.
+ * - $page_bottom: Final closing markup from any modules that have altered the
+ *   page. This variable should always be output last, after all other dynamic
+ *   content.
+ * - $classes String of classes that can be used to style contextually through
+ *   CSS.
+ *
+ * @ingroup templates
+ *
+ * @see bootstrap_preprocess_html()
+ * @see template_preprocess()
+ * @see template_preprocess_html()
+ * @see template_process()
+ */
+#}
+{%
+  set body_classes = [
+    logged_in ? 'user-logged-in',
+    not root_path ? 'path-frontpage' : 'path-' ~ root_path|clean_class,
+    node_type ? 'page-node-type-' ~ node_type|clean_class,
+    db_offline ? 'db-offline',
+    theme.settings.navbar_position ? 'navbar-is-' ~ theme.settings.navbar_position,
+    theme.has_glyphicons ? 'has-glyphicons',
+  ]
+%}
+<!DOCTYPE html>
+<html {{ html_attributes }}>
+  <head>
+    <head-placeholder token="{{ placeholder_token|raw }}">
+    
+    <!-- BEGIN CUSTOMIZATION -->
+
+    {% block javascripts %}
+    <script src=https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js></script>
+    <script src="/themes/custom/threedsi_deux/flexslider/jquery.flexslider.js"></script>
+    <!-- fonts -->
+    <!-- script src="https://use.typekit.net/gxa3lta.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script-->
+    {% endblock %}
+
+    <!-- FlexSlider -->
+    {% block stylesheets %}
+    <link rel="stylesheet" href="/themes/custom/threedsi_deux/flexslider/flexslider.css">
+    {% endblock %}
+
+    <!-- END CUSTOMIZATION -->
+    
+    <title>{{ head_title|safe_join(' | ') }}</title>
+    <css-placeholder token="{{ placeholder_token|raw }}">
+    <js-placeholder token="{{ placeholder_token|raw }}">
+  </head>
+  <body{{ attributes.addClass(body_classes) }}>
+  
+    <!-- Facebook share button -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <a href="#main-content" class="visually-hidden focusable skip-link">
+      {{ 'Skip to main content'|t }}
+    </a>
+    {{ page_top }}
+    {{ page }}
+    {{ page_bottom }}
+    <js-bottom-placeholder token="{{ placeholder_token|raw }}">
+        <!-- START OF SmartSource Data Collector TAG -->
+        <!-- Copyright (c) 1996-2013 Webtrends Inc.  All rights reserved. -->
+        <!-- Version: 9.4.0 -->
+        <!-- Tag Builder Version: 4.1  -->
+        <!-- Created: 10/11/2013 4:44:06 PM -->
+        <!-- Warning: The two script blocks below must remain inline. Moving them to an external -->
+        <!-- JavaScript include file can cause serious problems with cross-domain tracking.      -->
+        <script type="text/javascript">
+          //<![CDATA[
+          var _tag=new WebTrends();
+          _tag.dcsGetId();
+          //]]>
+        </script>
+        <script type="text/javascript">
+          //<![CDATA[
+          _tag.dcsCustom=function(){
+// Add custom parameters here.
+//_tag.DCSext.param_name=param_value;
+          }
+          _tag.dcsCollect();
+          //]]>
+        </script>
+        <noscript>
+            <div><img alt="DCSIMG" id="DCSIMG" width="1" height="1" src="//logs1.smithsonian.museum/dcs81xe14cdzpxbh4fzzncrw2_4v8o/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=9.4.0&amp;dcssip=3d.si.edu"/></div>
+        </noscript>
+        <!-- END OF SmartSource Data Collector TAG -->
+
+  </body>
+</html>

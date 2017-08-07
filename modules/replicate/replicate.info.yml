@@ -1,0 +1,11 @@
+name: Replicate
+# core: 8.x
+type: module
+description: "Replicate provide an API to replicate (duplicate) entities. This modules also provide hooks to control exactly how parts of an entity are duplicated."
+package: "Entity"
+
+# Information added by Drupal.org packaging script on 2017-05-11
+version: '8.x-1.x-dev'
+core: '8.x'
+project: 'replicate'
+datestamp: 1494460988

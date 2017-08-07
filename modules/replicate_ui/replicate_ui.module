@@ -1,0 +1,14 @@
+<?php
+/**
+ * @file
+ * Provide a user interface for the Replicate API.
+ */
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function replicate_ui_entity_type_alter(array $entity_types) {
+  /** @var \Drupal\replicate_ui\Hooks\EntityTypeAlter $entity_type_alter */
+  $entity_type_alter = \Drupal::service('replicate_ui.hooks.entity_type_alter');
+  $entity_type_alter->alter($entity_types);
+}

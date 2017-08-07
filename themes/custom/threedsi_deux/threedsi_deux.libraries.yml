@@ -1,0 +1,42 @@
+global-styling:
+  css:
+    theme:
+      css/style.css: {}
+    #  flexslider/flexslider.css: {}
+
+global-js:
+  js:
+    js/jquery.flexslider.js: {}
+    js/model-tours-slider.js: {}
+    js/webtrends.js: {}
+  dependencies:
+      - core/jquery
+      - core/jquery.ui.dialog
+
+grid-view:
+  version: 1.x
+  js:
+    js/grid-view.js: {}
+  dependencies:
+      - core/jquery
+
+#originally called in template,
+#now called globally above
+#remove from template first
+model-tours-slider:
+  version: 1.x
+  js:
+    js/jquery.flexslider.js: {}
+    js/model-tours-slider.js: {}
+  dependencies:
+      - core/jquery
+
+# Custom 3D Viewer integration (Share and Model Browser dialogs)
+play-modals:
+  css:
+    theme:
+      css/cc-explorer.css: {}
+      css/cc-explorer-ui.css: {}
+  js:
+    js/play-integration.js: {}
+    js/play-messaging.js: {}
