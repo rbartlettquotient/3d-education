@@ -1,0 +1,5 @@
+name: Example 4 - Data from external MySQL database via RESTful API
+type: module
+description: MySQL external data example using Drupal RESTful API.
+package: Drupal GovCon 2017
+core: 8.x

@@ -1,0 +1,7 @@
+ex6_json.read:
+  path: '/ex6_json'
+  defaults:
+    _title: 'Example 6: Consuming JSON from an endpoint'
+    _controller: '\Drupal\ex6_jsonfile\Controller\Ex6JsonFileController::content'
+  requirements:
+    _permission: 'access content'

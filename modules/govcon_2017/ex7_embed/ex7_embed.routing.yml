@@ -1,0 +1,17 @@
+# Route for autocomplete for selecting users from external datasource.
+exampleuser.autocomplete:
+  path: 'exampleuser/autocomplete'
+  defaults:
+    _controller: '\Drupal\ex7_embed\Controller\Ex7EmbedController::user_autocomplete'
+    _title: 'View user'
+  requirements:
+    _permission: 'administer content types'
+
+#ex7_embed.view_exampleusers:
+#  path: 'exampleusers'
+#  defaults:
+#    _controller: '\Drupal\ex7_embed\Controller\Ex7EmbedController::viewUsers'
+#    _title: 'View users'
+#  requirements:
+#    _permission: 'access content'
+

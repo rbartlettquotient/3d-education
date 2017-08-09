@@ -1,0 +1,8 @@
+ex1_flatfile.read:
+  path: '/ex1_flatfile/{path}'
+  defaults:
+    _title: 'Example 1: Processing an external txt file'
+    _controller: '\Drupal\ex1_flatfile\Controller\Ex1FlatFileController::content'
+    path: '/Users/sfelder/Sites/bodiless/sample.txt'
+  requirements:
+    _permission: 'access content'

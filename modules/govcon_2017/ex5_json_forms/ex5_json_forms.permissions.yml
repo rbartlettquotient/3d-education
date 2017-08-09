@@ -1,0 +1,4 @@
+edit jsonform article:
+  title: 'Edit JSON forms articlecontent'
+  description: 'Create, update and delete article content.'
+  restrict access: TRUE

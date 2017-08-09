@@ -1,0 +1,22 @@
+<div class="article-container">
+    {% if title is not empty %}
+        <h2>Article Data</h2>
+        <div class="article--title-container">
+            <div class="article--title"><a href="/article/{{ article_id }}">{{ title }}</a></div>
+        </div>
+        {% if data.description %}
+            {% if data.description.teaser %}
+            <div class="article--teaser-container">
+                <div class="article--teaser">{{ data.description.teaser | raw }}</div>
+            </div>
+            {%  endif %}
+            {% if data.description.content %}
+                <div class="article--description-container">
+                    <div class="article--description">{{ data.description.content | raw }}</div>
+                </div>
+            {%  endif %}
+        {%  endif %}
+    {% else  %}
+        No articles found for {{ article_id }}.
+    {% endif %}
+</div>

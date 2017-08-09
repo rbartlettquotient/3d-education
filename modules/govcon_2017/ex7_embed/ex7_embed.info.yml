@@ -1,0 +1,6 @@
+name: Example 7 - Embedding data
+description: Provides fields and formatters allowing embedding external data.
+package: Drupal GovCon 2017
+
+type: module
+core: 8.x

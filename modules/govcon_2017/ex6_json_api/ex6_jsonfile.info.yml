@@ -1,0 +1,7 @@
+name: Example 6 - Consume Data from an endpoint that provides JSON
+type: module
+description: API consumer example.
+package: Drupal GovCon 2017
+dependencies:
+  - ex2_jsonfile
+core: 8.x

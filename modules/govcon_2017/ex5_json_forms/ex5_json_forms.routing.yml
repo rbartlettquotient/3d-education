@@ -1,0 +1,47 @@
+ex5_json_forms.admin_get_all_articles:
+  path: '/admin/content/json_articles'
+  defaults:
+    _controller: '\Drupal\ex5_json_forms\Controller\Ex5JsonFormsController::viewAllArticlesPage'
+    _title: 'View All Json Forms Articles'
+  requirements:
+    _permission: 'edit jsonform article'
+
+ex5_json_forms.admin_new_article:
+  path: '/admin/content/json_article/add'
+  defaults:
+    _controller: '\Drupal\ex5_json_forms\Controller\Ex5JsonFormsController::newArticlePage'
+    _title: 'Add JSON Forms Article'
+  requirements:
+    _permission: 'edit jsonform article'
+
+ex5_json_forms.admin_edit_article:
+  path: '/admin/content/json_article/{article_id}/edit'
+  defaults:
+    _controller: '\Drupal\ex5_json_forms\Controller\Ex5JsonFormsController::editArticlePage'
+    _title: 'Edit JSON Forms Article'
+  requirements:
+    _permission: 'edit jsonform article'
+
+ex5_json_forms.admin_delete_article:
+  path: '/admin/content/json_article/{article_id}/delete'
+  defaults:
+    _controller: '\Drupal\ex5_json_forms\Controller\Ex5JsonFormsController::deleteArticlePage'
+    _title: 'Delete JSON Forms Article'
+  requirements:
+    _permission: 'edit jsonform article'
+
+ex5_json_forms.view_article:
+  path: '/article/{article_id}'
+  defaults:
+    _controller: '\Drupal\ex5_json_forms\Controller\Ex5JsonFormsController::viewArticlePage'
+    _title: 'View JSON Forms Article'
+  requirements:
+    _permission: 'view content'
+
+ex5_json_forms.autocomplete_article_type:
+  path: 'ex5_json_forms_taxonomy/autocomplete/article_type'
+  defaults:
+    _controller: '\Drupal\ex5_json_forms\Controller\Ex5JsonFormsController::autocompleteArticleType'
+    _title: 'Article Autocomplete'
+  requirements:
+    _permission: 'view content'

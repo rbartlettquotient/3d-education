@@ -1,0 +1,5 @@
+name: Example 2 - Data from JSON file
+type: module
+description: JSON file external data example.
+package: Drupal GovCon 2017
+core: 8.x

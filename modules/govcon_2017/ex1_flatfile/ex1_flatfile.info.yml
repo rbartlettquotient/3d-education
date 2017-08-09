@@ -1,0 +1,5 @@
+name: Example 1 - Data from flat file
+type: module
+description: Flat file external data example.
+package: Drupal GovCon 2017
+core: 8.x

@@ -1,0 +1,113 @@
+{
+  "name": "article",
+  "description": "Type definition for article records.",
+  "url": "type:article",
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "id": "http://schemas.test.com/schema/article/content",
+    "type": "object",
+    "properties": {
+      "type": "article",
+      "id": {
+        "id": "http://schemas.test.com/schema/article/id",
+        "type": "string"
+      },
+      "title": {
+        "id": "http://schemas.test.com/schema/article/title",
+        "type": "string"
+      },
+      "url": {
+        "id": "http://schemas.test.com/schema/article/url",
+        "type": "string"
+      },
+      "article_type": {
+        "id": "http://schemas.test.com/schema/article/article_type",
+        "type": "string"
+      },
+      "description": {
+        "fields": {
+          "content": {
+            "id": "http://schemas.test.com/schema/article/description/content",
+            "type": "string"
+          },
+          "teaser": {
+            "id": "http://schemas.test.com/schema/article/description/teaser",
+            "type": "string"
+          }
+        }
+      },
+      "status": {
+        "id": "http://schemas.test.com/schema/article/status",
+        "type": "integer",
+        "default": 0,
+        "enum": [-1, 0, 1]
+      }
+    },
+    "required": [
+      "title"
+    ]
+  },
+  "authoringForm": {
+    "id": {
+      "label": "Article ID",
+      "ux": {
+        "field_type": "hidden"
+      }
+    },
+    "title": {
+      "label": "Title",
+      "ux": {
+        "field_type": "text"
+      }
+    },
+    "article_type": {
+      "label": "Article Type",
+      "ux": {
+        "field_type": "text",
+        "autocomplete_path": "ex5_json_forms_taxonomy/autocomplete/article_type",
+        "maxlength": "400"
+      }
+    },
+    "url": {
+      "label": "Article URL",
+      "ux": {
+        "field_type": "text"
+      }
+    },
+    "description": {
+      "type": "fieldset",
+      "label": "Description",
+      "ux": {
+        "field_type": "fieldset"
+      },
+      "fields": {
+        "teaser": {
+          "label": "Description Teaser",
+          "ux": {
+            "field_type": "text_format",
+            "rows" : 40
+          }
+        },
+        "content": {
+          "label": "Description Content",
+          "ux": {
+            "field_type": "text_format",
+            "rows" : 40
+          }
+        }
+      }
+    },
+    "status": {
+      "label": "Status",
+      "ux": {
+        "field_type": "radios"
+      },
+      "default_value": 1,
+      "enum":
+      {
+        "1": "published",
+        "0": "un-published"
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+<?php
+
+  function ex5_json_forms_theme($existing, $type, $theme, $path) {
+
+    $display_templates['ex5_json_forms_article_template'] = array(
+      'variables' => array(
+        'data' => array(),
+        'title' => array(),
+        'article_id' => '',
+      ),
+    );
+
+    return $display_templates;
+
+  }

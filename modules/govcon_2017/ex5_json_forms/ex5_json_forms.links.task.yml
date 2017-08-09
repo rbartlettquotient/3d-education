@@ -1,0 +1,6 @@
+ex5_json_forms.admin_get_all_articles:
+  title: Articles
+  description: View Articles.
+  route_name: ex5_json_forms.admin_get_all_articles
+  base_route: system.admin_content
+  weight: -17

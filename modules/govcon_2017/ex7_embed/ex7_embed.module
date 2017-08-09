@@ -1,0 +1,111 @@
+<?php
+
+/**
+ * @file
+ * Defines simple example user field type.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+
+function ex7_embed_theme($existing, $type, $theme, $path) {
+  $display_templates['ex7_embed_user_template'] = array(
+    'variables' => array(
+      'data' => array(),
+      'title' => '',
+      'user_id' => '',
+    ),
+  );
+
+  return $display_templates;
+}
+
+/**
+ * Form element validate handler for exampleuser autocomplete element.
+ */
+function exampleuser_autocomplete_validate($element, FormStateInterface $form_state) {
+  if ($exampleuser = $element['#value']) {
+    $exampleusers = \Drupal\ex7_embed\Controller\Ex7EmbedController\getExampleUsersList();
+    $u = array_search($exampleuser, $exampleusers);
+    if (!empty($iso2)) {
+      $form_state->setValueForElement($element, $u);
+    }
+  }
+}
+
+/**
+ * Implements hook_help().
+ */
+function ex7_embed_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.ex7_embed':
+      $output = '';
+      $output .= '<h3>' . t('Example 7 - Embed Content') . '</h3>';
+      $output .= '<p>' . t('This module defines a simple example user type for the Field module, allowing users to "embed" external example user data within nodes. It provides 2 widgets - select options and autocomplete textfield - for this purpose.  See the <a href="!field-help">Field module help page</a> for more information about fields.', array('!field-help' => Url::fromUri('internal:/admin/help/field_ui'))) . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Retrieve example user JSON data from an API endpoint.
+ *
+ * @return array of users
+ *
+ * @throws FileNotFoundException If the given path is not a file
+ */
+function getExampleUsersList($val = NULL) {
+  $host = \Drupal::request()->getHost();
+  $port = \Drupal::request()->getPort();
+
+  $json_in = sendRequest('http://' . $host . ':' . $port . '/ex2_json');
+
+  $json = json_decode($json_in);
+
+  $json_matches = array();
+  if(NULL !== $val) {
+    foreach($json->data as $k => $v) {
+      // find matches only
+      $all_user_string = $v->id . ' ' . $v->fname . ' ' . $v->lname . ' ' . $v->email;
+      if(strpos($all_user_string, $val) !== FALSE) {
+        $json_matches[$v->email] = $v->fname . ' ' . $v->lname;
+      }
+    }
+  }
+  else {
+    foreach($json->data as $k => $v) {
+      $json_matches[$v->email] = $v->fname . ' ' . $v->lname;
+    }
+  }
+
+  return $json_matches;
+}
+
+function sendRequest($endpoint, $POST = FALSE) {
+  $ch = curl_init();
+
+  if ($POST === TRUE) {
+    curl_setopt($ch, CURLOPT_URL, $endpoint);
+    curl_setopt($ch, CURLOPT_POST, 1);
+  }
+  else {
+    curl_setopt($ch, CURLOPT_URL, $endpoint);
+  }
+
+  curl_setopt($ch, CURLOPT_HEADER, 0);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ch, CURLINFO_HEADER_OUT, 1);
+
+  $response = curl_exec($ch);
+  $info = curl_getinfo($ch);
+
+  if ($info['http_code'] == 200) {
+//    $this->valid_request = TRUE;
+  } else {
+//    $this->valid_request = FALSE;
+  }
+
+  curl_close($ch);
+
+  return $response;
+}

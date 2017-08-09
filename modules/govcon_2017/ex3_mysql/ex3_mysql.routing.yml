@@ -1,0 +1,7 @@
+ex3_mysql.read:
+  path: '/ex3_mysql'
+  defaults:
+    _title: 'Example 3: Retrieve data from an external MySQL database'
+    _controller: '\Drupal\ex3_mysql\Controller\Ex3MysqlController::content'
+  requirements:
+    _permission: 'access content'

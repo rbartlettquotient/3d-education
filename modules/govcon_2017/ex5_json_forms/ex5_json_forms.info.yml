@@ -1,0 +1,6 @@
+name: Example 5 - JSON Forms
+description: Autogenerates a form, data validation and saving, using JSON data and a JSON schema.
+package: Drupal GovCon 2017
+
+type: module
+core: 8.x

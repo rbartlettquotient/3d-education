@@ -1,0 +1,6 @@
+{
+  "name": "drupal/ex5_json_forms",
+  "description": "This modules generates forms and validates data based on JSON schemas.",
+  "type": "drupal-module",
+  "license": "GPL-2.0+"
+}

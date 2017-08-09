@@ -1,0 +1,6 @@
+services:
+  ex5_json_forms.breadcrumb:
+    class: Drupal\ex5_json_forms\Ex5JsonFormsBreadcrumbBuilder
+    arguments: ['@entity.manager']
+    tags:
+      - { name: breadcrumb_builder, priority: 100 }
