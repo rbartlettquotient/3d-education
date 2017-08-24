@@ -101,6 +101,10 @@
         ]
       %}
       <div class="content">
+         {% block title %}
+          <a id="title"></a>
+          {{ page.title }}
+        {% endblock %}
         {# Highlighted #}
         {% if page.highlighted %}
           {% block highlighted %}
@@ -130,10 +134,7 @@
         {% endif %}
 
         {# Homepage Content #}
-        {% block title %}
-          <a id="title"></a>
-          {{ page.title }}
-        {% endblock %}
+       
 
         <div {{ content_attributes.addClass(content_classes) }}>
 
@@ -141,26 +142,20 @@
         {% block content %}
           <a id="main-content"></a>
           <div class="main">
-              {{ page.content }}
-              {{ page.secondaryContent }}
-              <p>Test</p>
+               <div class="col-sm-12 col-md-8">
+                 {{ page.content }}
+               </div>
+               <div class="col-sm-12 col-md-4">
+                {{ page.secondaryContent }}
+               </div>
           </div>
         {% endblock %}
 
       </div>
        
-        {# Sidebar #}
-        {% if page.sidebar %}
-          {% block sidebar %}
-            <aside class="col-md-4" role="complementary">
-              <div class="row">
-              sidebar hello
-              {{ page.sidebar}}
-            </div>
-            </aside>
-          {% endblock %}
-        {% endif %}
-      </div>
+        {# Sidebar removed #}
+        
+      </div><!-- .content-->
     </div>
   </div>
 {% endblock %}
