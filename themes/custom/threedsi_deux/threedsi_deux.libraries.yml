@@ -40,3 +40,17 @@ play-modals:
   js:
     js/play-integration.js: {}
     js/play-messaging.js: {}
+
+# Social feed social media aggregator
+social-feed:
+  css:
+    theme:
+      js/social-feed/jquery.socialfeed.css: {}
+  js:
+    js/social-feed/plugins/codebird.js: {}
+    js/social-feed/plugins/doT.min.js: {}
+    js/social-feed/plugins/moment.min.js: {}
+    js/social-feed/jquery.socialfeed.js: {}
+    js/3d-social-block.js: {}
+  dependencies:
+    - core/jquery

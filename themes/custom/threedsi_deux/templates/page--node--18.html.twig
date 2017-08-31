@@ -56,6 +56,9 @@
  * @see html.html.twig
  */
 #}
+
+{{ attach_library('threedsi_deux/social-feed') }}
+
 {% set container = theme.settings.fluid_container ? 'container-fluid' : 'container' %}
 {# Navbar #}
 {% if page.navigation or page.navigation_collapsible %}
@@ -101,10 +104,7 @@
         ]
       %}
       <div class="content">
-         {% block title %}
-          <a id="title"></a>
-          {{ page.title }}
-        {% endblock %}
+  
         {# Highlighted #}
         {% if page.highlighted %}
           {% block highlighted %}
@@ -142,10 +142,11 @@
         {% block content %}
           <a id="main-content"></a>
           <div class="main">
-               <div class="col-sm-12 col-md-8">
+          {{ page.title }}
+               <div class="col-sm-12 col-md-7">
                  {{ page.content }}
                </div>
-               <div class="col-sm-12 col-md-4">
+               <div class="col-sm-12 col-md-5">
                 {{ page.secondaryContent }}
                </div>
           </div>
@@ -158,7 +159,9 @@
       </div><!-- .content-->
     </div>
   </div>
+
 {% endblock %}
+
 
 {% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth %}
 <footer>
@@ -190,3 +193,5 @@
 </div>
 </footer>
 {% endif %}
+
+
